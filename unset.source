@@ -1,0 +1,6 @@
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+VARS="$( cat "$DIR/database.env.source" | grep export | awk '{ print $2; }' | cut -d "=" -f 1 )"
+
+while read var; do unset "$var"; done < <(echo "$VARS")
